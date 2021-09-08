@@ -1,12 +1,13 @@
-select STATECENSUS,
+SELECT STATECENSUS,
        YEAR,
        COUNT(*) FILTER (
-                        WHERE EARNWT > 0.0) as observations,
-       SUM(EARNWT/12) as employment,
+                        WHERE EARNWT > 0.0) AS observations,
+       SUM(EARNWT/12) AS employment,
        SUM(EARNWT/12) FILTER (
-                              WHERE "UNION" = 2) as members,
+                              WHERE "UNION" = 2) AS members,
        SUM(EARNWT/12) FILTER (
-                              WHERE "UNION" > 1) as covered
+                              WHERE "UNION" > 1) AS covered
 FROM cps
-where ELIGORG = 1
-GROUP BY STATECENSUS, YEAR;
+WHERE ELIGORG = 1
+GROUP BY STATECENSUS,
+         YEAR;
