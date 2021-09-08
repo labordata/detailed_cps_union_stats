@@ -1,7 +1,8 @@
 select STATECENSUS,
        YEAR,
        IND,
-       SUM(EARNWT > 0.0) as observations,
+       COUNT(*) FILTER (
+                        WHERE EARNWT > 0.0) as observations,
        SUM(EARNWT/12) as employment,
        SUM(EARNWT/12) FILTER (
                               WHERE "UNION" = 2) as members,
